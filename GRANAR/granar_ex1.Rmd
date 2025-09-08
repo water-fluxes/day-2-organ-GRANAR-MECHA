@@ -36,6 +36,8 @@ params$value[params$type == "n_files" & params$name == "xylem"] = 5
 root_sim <- create_anatomy(parameters = params)
 # VISU
 plot_anatomy(root_sim)
+# Export anatomy
+write_anatomy_xml(root_sim, "../MECHA/cellsetdata/current_root.xml")
 ```
 
 ## Exploring complexity
