@@ -38,7 +38,7 @@ root_sim <- create_anatomy(parameters = params)
 plot_anatomy(root_sim)
 # Export anatomy
 write_anatomy_xml(root_sim, "../MECHA/cellsetdata/current_root.xml")
-aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+aer_in_geom_xml(root_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
 ```
 
 ## Exploring complexity
@@ -60,7 +60,7 @@ root_sim <- create_anatomy(parameters = params)
 plot_anatomy(root_sim)
 # Export anatomy
 write_anatomy_xml(root_sim, "../MECHA/cellsetdata/current_root.xml")
-aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+aer_in_geom_xml(root_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
 file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
           "../MECHA/Projects/granar/in/Maize_Geometry_aer_sensitivity.xml" , overwrite = T)
 
