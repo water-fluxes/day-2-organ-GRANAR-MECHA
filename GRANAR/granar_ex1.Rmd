@@ -38,12 +38,33 @@ root_sim <- create_anatomy(parameters = params)
 plot_anatomy(root_sim)
 # Export anatomy
 write_anatomy_xml(root_sim, "../MECHA/cellsetdata/current_root.xml")
+aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
 ```
 
 ## Exploring complexity
 
 Explore more detailed anatomies using a parameter set with additional tissues and apoplastic barriers.
 We invite you to dive in the '.xml' file
+
+### Sensitivity analysis per Teams!
+
+```{r}
+
+# Load generic parameter file for GRANAR
+params <- read_param_xml(path = "./www/root_monocot_simpl.xml")
+# Xylem parameter
+params$value[params$type == "" & params$name == ""] = 
+# RUN
+root_sim <- create_anatomy(parameters = params)
+# VISU
+plot_anatomy(root_sim)
+# Export anatomy
+write_anatomy_xml(root_sim, "../MECHA/cellsetdata/current_root.xml")
+aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_sensitivity.xml" , overwrite = T)
+
+```
 
 ```{r}
 params_complx <- read_param_xml(path = "./www/root_monocot.xml")
@@ -114,12 +135,29 @@ file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
           "../MECHA/Projects/granar/in/Maize_Geometry_aer_nod.xml" , overwrite = T)
 ```
 
+
+## Make your own!
+
+```{r}
+my_params <- read_param_xml(path = "./www/my_root.xml")
+my_sim = create_anatomy(parameters = my_params)
+# To visualize the anatomy and the scenario that are going to be tested.
+# you can use the plot_anatomy function.
+
+plot_anatomy(my_sim, col = "area")
+
+write_anatomy_xml(my_sim, "../MECHA/cellsetdata/test_root.xml")
+
+aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_test.xml" , overwrite = T)
+
+```
+
+
 ## recap:
 
 - You learned how to load and modify parameter files in GRANAR
 - You generated and visualized different root anatomies
 - You explored anatomical complexity with apoplastic barriers
 - You exported anatomies for further simulations with MECHA
-
-
-
