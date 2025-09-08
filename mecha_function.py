@@ -19,14 +19,13 @@ from pylab import *  # for plotting
 from numpy import genfromtxt #Load data from a text file, with missing values handled as specified.
 from numpy.random import *  # for random sampling
 
-def mecha(
-        directory='./MECHA/',     #Project
-        Project='Projects/granar/', #BBSRC/'#'Projects/
-        Gen='Maize_General.xml',#'Arabido1_General.xml' #'MilletLR3_General.xml' #
-        Geom='Maize_Geometry_aer.xml',#'Arabido4_Geometry_BBSRC.xml' #'Maize2_Geometry.xml' #''MilletLR3_Geometry.xml'    #'Wheat1_Nodal_Geometry_aerenchyma.xml' #'Maize1_Geometry.xml' #
-        Hydr='Maize_Hydraulics.xml', #'Arabido1_Hydraulics_ERC.xml' #'MilletLR3_Hydraulics.xml' #'Test_Hydraulics.xml' #
-        BC='Maize_BC_kr.xml', #'Arabido4_BC_BBSRC2.xml' #'Arabido1_BC_Emily.xml' #'Arabido3_BC_BBSRC.xml' #'Maize_BC_SoluteAna_krOsmo.xml'#'Maize_BC_OSxyl_hetero.xml' #'Arabido1_BC_Emily.xml' #'BC_Test.xml' #'Maize_BC_Plant_phys.xml'
-        Horm='Maize_Hormones_Carriers.xml'):
+def mecha(directory='./MECHA/',     #Project
+          Project='Projects/granar/', #BBSRC/'#'Projects/
+          Gen='Maize_General.xml',#'Arabido1_General.xml' #'MilletLR3_General.xml' #
+          Geom='Maize_Geometry_aer.xml',#'Arabido4_Geometry_BBSRC.xml' #'Maize2_Geometry.xml' #''MilletLR3_Geometry.xml'    #'Wheat1_Nodal_Geometry_aerenchyma.xml' #'Maize1_Geometry.xml' #
+          Hydr='Maize_Hydraulics.xml', #'Arabido1_Hydraulics_ERC.xml' #'MilletLR3_Hydraulics.xml' #'Test_Hydraulics.xml' #
+          BC='Maize_BC_kr.xml', #'Arabido4_BC_BBSRC2.xml' #'Arabido1_BC_Emily.xml' #'Arabido3_BC_BBSRC.xml' #'Maize_BC_SoluteAna_krOsmo.xml'#'Maize_BC_OSxyl_hetero.xml' #'Arabido1_BC_Emily.xml' #'BC_Test.xml' #'Maize_BC_Plant_phys.xml'
+          Horm='Maize_Hormones_Carriers.xml'):
     
     print('Importing geometrical data')
     OS=etree.parse(directory + Project + 'in/' + Gen).getroot().xpath('OS')[0].get("value")
