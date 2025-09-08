@@ -1,0 +1,123 @@
+---
+title: "Hands-on session: GRANAR – Generator of root anatomies in R"
+author: "Adrien Heymans"
+date: "2025-09-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(granar)
+```
+
+## introduction
+
+In this session, we will learn how to generate and manipulate root anatomies with GRANAR.
+We will:
+
+- load and modify parameter files
+- generate different types of root anatomies
+- visualize anatomical structures with different options
+- export data for use in MECHA simulations
+
+### Making a first anatomy
+
+We start by loading a simple monocot root parameter file, modifying the xylem features, and visualizing the result.
+
+```{r}
+#### LOAD - MODIFY - RUN - VISU #### 
+
+# Load generic parameter file for GRANAR
+params <- read_param_xml(path = "./www/root_monocot_simpl.xml")
+# Xylem parameter
+params$value[params$type == "max_size" & params$name == "xylem"] = 0.05
+params$value[params$type == "n_files" & params$name == "xylem"] = 5
+# RUN
+root_sim <- create_anatomy(parameters = params)
+# VISU
+plot_anatomy(root_sim)
+```
+
+## Exploring complexity
+
+Explore more detailed anatomies using a parameter set with additional tissues and apoplastic barriers.
+We invite you to dive in the '.xml' file
+
+```{r}
+params_complx <- read_param_xml(path = "./www/root_monocot.xml")
+sim_complx = create_anatomy(parameters = params_complx)
+# To visualize the anatomy and the scenario that are going to be tested.
+# you can use the plot_anatomy function.
+plot_anatomy(sim_complx, col = "segment", apo_bar = 1)
+plot_anatomy(sim_complx, col = "segment", apo_bar = 2)
+plot_anatomy(sim_complx, col = "segment", apo_bar = 3)
+```
+
+GRANAR is aslo able to run secondary growth pattern. 
+
+```{r}
+params_complx <- read_param_xml(path = "./www/root_dicot_secGrowth.xml")
+sim_complx = create_anatomy(parameters = params_complx)
+# To visualize the anatomy and the scenario that are going to be tested.
+# you can use the plot_anatomy function.
+
+plot_anatomy(sim_complx, col = "area")
+
+```
+
+## Comparing root types
+
+Different root types can be generated from their respective parameter sets. Here we compare lateral, seminal, and nodal roots of a maize plant.
+
+```{r}
+# load the parameter sets
+params_lat <- read_param_xml(path = "./www/lateral_root.xml")
+params_sem <- read_param_xml(path = "./www/seminal_root.xml")
+params_nod <- read_param_xml(path = "./www/nodal_root.xml")
+
+# generation of the anatomies
+sim_lat = create_anatomy(parameters = params_lat)
+sim_sem = create_anatomy(parameters = params_sem)
+sim_nod = create_anatomy(parameters = params_nod)
+
+# check of the anatomies
+plot_anatomy(sim_lat, col = "segment", apo_bar = 2)
+plot_anatomy(sim_sem, col = "segment", apo_bar = 2)
+plot_anatomy(sim_nod, col = "segment", apo_bar = 2)
+
+
+```
+
+
+## Exporting data for other functional models
+
+The simulated anatomies can be saved in XML format for later use with MECHA.
+We will export both cell set data and geometrical information (with aerenchyma).
+
+```{r}
+# save the nodes data 
+write_anatomy_xml(sim_lat, "../MECHA/cellsetdata/root_lat.xml")
+write_anatomy_xml(sim_sem, "../MECHA/cellsetdata/root_sem.xml")
+write_anatomy_xml(sim_nod, "../MECHA/cellsetdata/root_nod.xml")
+
+# save the geometrical information - aerenchyma
+aer_in_geom_xml(sim_lat, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_lat.xml" , overwrite = T)
+aer_in_geom_xml(sim_sem, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_sem.xml" , overwrite = T)
+aer_in_geom_xml(sim_nod, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_nod.xml" , overwrite = T)
+```
+
+## recap:
+
+- You learned how to load and modify parameter files in GRANAR
+- You generated and visualized different root anatomies
+- You explored anatomical complexity with apoplastic barriers
+- You exported anatomies for further simulations with MECHA
+
+
+
