@@ -117,7 +117,7 @@ Different root types can be generated from their respective parameter sets. Here
 ```{r}
 # load the parameter sets
 params_lat <- read_param_xml(path = "./www/lateral_root.xml")
-params_sem <- read_param_xml(path = "./www/seminal_root.xml")
+params_sem <- read_param_xml(path = "./www/root_monocot_simpl.xml")
 params_nod <- read_param_xml(path = "./www/nodal_root.xml")
 
 # generation of the anatomies
