@@ -8,7 +8,7 @@
 	<!-- Stele layers -->
 	<!-- Order defines the ranking of the tissue radialy -->
 	<!-- cell_diameter = cell width [mm]; layer_diameter = diameter of the stele  -->
-	<stele cell_diameter="0.011" n_layers="1" layer_diameter = "0.198" order="1"/>
+	<stele cell_diameter="0.011" n_layers="1" layer_diameter = "0.21" order="1"/>
 	<pericycle cell_diameter="0.011" n_layers="1"  order="2"/>
 	<endodermis cell_diameter="0.025" n_layers="1"  order="3"/>
 	<!-- Cortex layers -->
