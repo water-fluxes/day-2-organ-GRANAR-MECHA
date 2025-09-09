@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <granar>
+	
 	<!-- General parameters -->
 	<planttype param="1" /> <!-- 1 = monocot / 2 = dicot -->
-	<randomness param="3" />
+	<randomness param="1" />
 	
 	<!-- Cell layers -->
 	<stele cell_diameter="0.0025" n_layers="1" layer_diameter = "0.04" order="1"/>
@@ -12,6 +14,7 @@
 	<cortex cell_diameter="0.014" n_layers="1"  order="4"/>
 	<exodermis cell_diameter="0.01" n_layers="1" order="5"/>	
 	<epidermis cell_diameter="0.008" n_layers="1" order="6"/>
+
 
 	<!-- Vessels-->
 	<xylem max_size="0.016" n_files="1" order="1.5" ratio ="5" />
