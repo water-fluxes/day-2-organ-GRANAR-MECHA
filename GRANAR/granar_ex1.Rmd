@@ -84,9 +84,30 @@ sim_complx = create_anatomy(parameters = params_complx)
 # To visualize the anatomy and the scenario that are going to be tested.
 # you can use the plot_anatomy function.
 
-plot_anatomy(sim_complx, col = "area")
+plot_anatomy(sim_complx, col = "dist")
 
 ```
+
+
+## Make your own!
+
+```{r}
+# Change the parameter directly in the .xml or with multiple 
+# my_params$value[my_params$type == "" & my_params$name == ""] = 
+my_params <- read_param_xml(path = "./www/root_monocot_simpl.xml") # "./www/my_root.xml"
+my_sim = create_anatomy(parameters = my_params)
+
+plot_anatomy(my_sim, col = "area")
+
+write_anatomy_xml(my_sim, "../MECHA/cellsetdata/test_root.xml")
+
+aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
+file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
+          "../MECHA/Projects/granar/in/Maize_Geometry_aer_test.xml" , overwrite = T)
+
+```
+
+
 
 ## Comparing root types
 
@@ -135,24 +156,6 @@ file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
           "../MECHA/Projects/granar/in/Maize_Geometry_aer_nod.xml" , overwrite = T)
 ```
 
-
-## Make your own!
-
-```{r}
-my_params <- read_param_xml(path = "./www/my_root.xml")
-my_sim = create_anatomy(parameters = my_params)
-# To visualize the anatomy and the scenario that are going to be tested.
-# you can use the plot_anatomy function.
-
-plot_anatomy(my_sim, col = "area")
-
-write_anatomy_xml(my_sim, "../MECHA/cellsetdata/test_root.xml")
-
-aer_in_geom_xml(my_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
-file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
-          "../MECHA/Projects/granar/in/Maize_Geometry_aer_test.xml" , overwrite = T)
-
-```
 
 
 ## recap:
