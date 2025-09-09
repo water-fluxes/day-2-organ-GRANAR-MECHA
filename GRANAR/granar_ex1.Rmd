@@ -23,6 +23,8 @@ We will:
 ### Making a first anatomy
 
 We start by loading a simple monocot root parameter file, modifying the xylem features, and visualizing the result.
+The simulated anatomies can be saved in XML format for later use with MECHA.
+We will export both cell set data and geometrical information (with aerenchyma).
 
 ```{r}
 #### LOAD - MODIFY - RUN - VISU #### 
@@ -43,7 +45,6 @@ aer_in_geom_xml(root_sim, "../MECHA/Projects/granar/in/Maize_Geometry.xml")
 
 ## Exploring complexity
 
-Explore more detailed anatomies using a parameter set with additional tissues and apoplastic barriers.
 We invite you to dive in the '.xml' file
 
 ### Sensitivity analysis per Teams!
@@ -65,7 +66,7 @@ file.copy("../MECHA/Projects/granar/in/Maize_Geometry_aer.xml",
           "../MECHA/Projects/granar/in/Maize_Geometry_aer_sensitivity.xml" , overwrite = T)
 
 ```
-
+Explore more detailed anatomies using a parameter set with additional features.
 ```{r}
 params_complx <- read_param_xml(path = "./www/root_monocot.xml")
 sim_complx = create_anatomy(parameters = params_complx)
@@ -134,9 +135,6 @@ plot_anatomy(sim_nod, col = "segment", apo_bar = 2)
 
 
 ## Exporting data for other functional models
-
-The simulated anatomies can be saved in XML format for later use with MECHA.
-We will export both cell set data and geometrical information (with aerenchyma).
 
 ```{r}
 # save the nodes data 
